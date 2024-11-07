@@ -36,6 +36,13 @@ pipeline{
             
         }
     }
+    stage("wait for quilty gate"){
+        steps{
+            timeout(time: 6, unit: "MINUTES"){
+                waitForQualityGate abortPipeline: true, credentialsId: 'SonarQubeServer'
+            }
+        }
+    }
     }
 }
 
