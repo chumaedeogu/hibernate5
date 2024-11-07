@@ -57,6 +57,11 @@ pipeline{
             sh ' mvn package -DskipTest=True'
         }
     }
+    stage("docker build"){
+        steps{
+            sh 'docker build -t chumaedeogu/java-test .'
+        }
+    }
     }
 }
 
