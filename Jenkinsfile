@@ -3,6 +3,9 @@ pipeline{
     tools {
         maven 'maven'
           }
+    environment {
+        SONAR_HOME = tool "sonar-scanner"
+    }
     stages{
         stage("clean work space"){
             steps{
@@ -18,6 +21,19 @@ pipeline{
    stage("unit test"){
         steps{
             sh 'mvn clean test'
+        }
+    }
+    stage("static analysis"){
+        steps{
+              withSonarQubeEnv('SonarQubeServer') {
+                sh '''
+                   ${SONAR_HOME}/bin/sonar-scanner -Dsonar.projectName="gitest"\
+                   -Dsonar.projectKey="gitest" \
+                   -Dsonar.java.binaries=.
+                   '''
+   
+               }
+            
         }
     }
     }
