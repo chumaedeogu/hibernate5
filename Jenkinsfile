@@ -43,6 +43,15 @@ pipeline{
             }
         }
     }
+    stage("owasp check"){
+        steps{
+             dependencyCheck additionalArguments: '''
+             -o target/
+              -s target/
+              -f ALL
+            ''', odcInstallation: 'owasp'
+        }
+    }
     }
 }
 
