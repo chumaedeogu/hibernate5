@@ -52,6 +52,11 @@ pipeline{
             ''', odcInstallation: 'owasp'
         }
     }
+    stage("create artifacts"){
+        steps{
+            sh ' mvn package -DskipTest=True'
+        }
+    }
     }
 }
 
