@@ -26,7 +26,7 @@ pipeline{
         stages(" run the depenncy check"){
             steps{
                 dependencyCheck additionalArguments: '''--output "tartget/"
-                   --scan "target/"
+                   g--scan "target/"
                   -f "ALL"''', odcInstallation: 'owasp'
             }
         }
