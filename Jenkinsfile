@@ -1,34 +1,26 @@
 pipeline{
-    agent{
-        label "node"
+    agent {label 'docker'}
+    tools {
+        maven 'maven'
     }
     stages{
-        stage("A"){
+        stage("clean work space"){
             steps{
-                echo "========executing A========"
+                sh 'cleanWs()'
             }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
-            }
+        }
+
+        }
+    stage("check out"){
+        steps{
+            git branch: "test", url: "https://github.com/chumaedeogu/hibernate5.git"
         }
     }
-    post{
-        always{
-            echo "========always========"
+    stage("unit test"){
+        steps{
+            sh 'mvn clean test'
         }
-        success{
-            echo "========pipeline executed successfully ========"
-        }
-        failure{
-            echo "========pipeline execution failed========"
-        }
+    }
     }
 }
+    
