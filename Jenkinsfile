@@ -2,15 +2,13 @@ pipeline{
     agent {label 'docker'}
     tools {
         maven 'maven'
-    }
+          }
     stages{
         stage("clean work space"){
             steps{
-                sh 'cleanWs()'
+                cleanWs()
             }
         }
-
-        
 
    stage("unit test"){
         steps{
