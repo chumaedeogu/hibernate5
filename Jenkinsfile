@@ -12,10 +12,6 @@ pipeline{
 
         
 
-    stage("check out"){
-        steps{
-            git branch: "test", url: "https://github.com/chumaedeogu/hibernate5.git"
-        }
     }
     stage("unit test"){
         steps{
