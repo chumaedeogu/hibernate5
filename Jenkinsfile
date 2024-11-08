@@ -63,7 +63,11 @@ pipeline{
         }
     }
     stage("trivy check"){
+        steps{
+
+        
         sh 'trivy image java-test --severity HIGH,CRITICAL --exit-code 1'
+        }
     }
     }
 }
