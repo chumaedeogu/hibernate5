@@ -62,6 +62,9 @@ pipeline{
             sh 'docker build -t chumaedeogu/java-test .'
         }
     }
+    stage("trivy check"){
+        sh 'trivy image java-test --severity HIGH,CRITICAL --exit-code 1'
+    }
     }
 }
 
